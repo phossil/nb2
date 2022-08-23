@@ -3,7 +3,7 @@
   :author "tophullyte"
   :license ""
   :depends-on ("lispcord"
-               "cl-dotenv")
+               "dotenv")
   :components ((:module "src"
                 :components
                 ((:file "packages")
@@ -24,9 +24,7 @@
                  (:file "song"))))
   :description ""
   ;; and here we define how build the image
-  :build-operation "program-op" ;; leave as is
-  :build-pathname "nb2"
-  :entry-point "nb2:main"
+  ;entry-point "nb2:main"
   ;; back to normal asdf stuffs
   :in-order-to ((test-op (test-op "nb2/tests"))))
 

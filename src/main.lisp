@@ -1,15 +1,11 @@
 (in-package :nb2)
 
-;; (setf (v:repl-level) :info)
+(dotenv:load! '("nenv"))
 
-;; (.env:load-env (merge-pathnames "./nenv"))
+(if (string= (dotenv:value "TOKEN") nil)
+    (format t "TOKEN not defined in nenv file :/"))
 
-;(defvar *name*
-;  (let ((env (.env:read-env (merge-pathnames "./nenv"))))
-;    (is (gethash "TOKEN" env) "")
-;    (is (gethash "PREFIX" env) ";")))
-
-(defbot *client* "")
+(defbot *client* (dotenv:value "TOKEN"))
 
 (defun message-create (msg)
   (cond ((lc:botp (lc:author msg)) nil)
