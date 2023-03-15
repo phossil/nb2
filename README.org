@@ -6,12 +6,12 @@
 
 ** Author
 
-+ a (a@a.com)
++ phossil (phossili@outlook.com)
 
 ** Copyright
 
-Copyright (c) 2021 a (a@a.com)
+Copyright (c) 2021-2023 phossil (phossili@outlook.com)
 
 ** License
 
-Licensed under the a License.
+Under no license currently TUTUTUTUTUTUT.

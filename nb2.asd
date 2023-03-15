@@ -1,6 +1,6 @@
 (defsystem "nb2"
   :version "0.1.0"
-  :author "tophullyte"
+  :author "phossil"
   :license ""
   :depends-on ("lispcord"
                "dotenv")
