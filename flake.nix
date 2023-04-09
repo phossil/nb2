@@ -3,13 +3,30 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-cl.url = "github:Uthar/nix-cl/v0.2.0";
   };
 
   outputs = { self, nixpkgs }:
-    let pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      lib = nixpkgs.lib;
     in
     {
-      # aaaaa
+      devShells.${system}.default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs; [
+          rlwrap
+          sbcl
+        ];
+        buildInputs = with pkgs; [
+          openssl
+        ];
+        LD_LIBRARY_PATH = lib.makeLibraryPath (with pkgs;
+          [
+            openssl
+          ]);
+      };
+
+      # make the flake look pretty :)
+      formatter.${system} = pkgs.nixpkgs-fmt;
     };
 }
