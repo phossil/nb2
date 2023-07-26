@@ -2,7 +2,7 @@
   description = "dumb discord bot two: electric boogaloo";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
   outputs = { self, nixpkgs }:
@@ -15,7 +15,7 @@
       devShells.${system}.default = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
           rlwrap
-          sbcl
+          ccl
         ];
         buildInputs = with pkgs; [
           openssl
