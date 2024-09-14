@@ -5,28 +5,30 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { self, nixpkgs }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       lib = nixpkgs.lib;
     in
     {
-      devShells.${system}.default = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
-          rlwrap
-          ccl
-        ];
-        buildInputs = with pkgs; [
-          openssl
-        ];
-        LD_LIBRARY_PATH = lib.makeLibraryPath (with pkgs;
-          [
-            openssl
-          ]);
+      devShells.${system} = rec {
+        default = _nb2;
+
+        _nb2 = pkgs.mkShell rec {
+          nativeBuildInputs = with pkgs; [
+            rlwrap
+            ccl
+          ];
+          buildInputs = with pkgs; [ openssl ];
+          env = {
+            LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
+          };
+        };
       };
 
       # make the flake look pretty :)
-      formatter.${system} = pkgs.nixpkgs-fmt;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
     };
 }
