@@ -3,10 +3,18 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixflake-misc = {
+      url = "github:phossil/nixflake-misc";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs }:
+    {
+      self,
+      nixpkgs,
+      nixflake-misc,
+    }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -21,7 +29,7 @@
             rlwrap
             ccl
           ];
-          buildInputs = with pkgs; [ openssl ];
+          buildInputs = with pkgs; [ openssl concord ];
           env = {
             LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
           };

@@ -3,10 +3,12 @@
   :author "phossil"
   :license ""
   :depends-on ("lispcord"
-               "dotenv")
+               "dotenv"
+               "cffi")
   :components ((:module "src"
                 :components
                 ((:file "packages")
+                 (:file "test-thingy")
                  (:file "main")
                  (:file "commands")
                  (:file "uptime")
@@ -23,9 +25,9 @@
                  (:file "slap")
                  (:file "song"))))
   :description ""
-  ;; and here we define how build the image
-  ;entry-point "nb2:main"
-  ;; back to normal asdf stuffs
+  ;; the function to use if image is built as an executable
+  :entry-point "nb2:main"
+  ;; "nb2" is a dependency of the tests
   :in-order-to ((test-op (test-op "nb2/tests"))))
 
 (defsystem "nb2/tests"

@@ -14,4 +14,4 @@ Copyright (c) 2021-2024 phossil (phossili@outlook.com)
 
 ## License
 
-Under no license currently TUTUTUTUTUTUT.
+Under no license currently TwTwTwTwTwTwT.
